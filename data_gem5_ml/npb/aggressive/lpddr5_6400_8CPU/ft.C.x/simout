@@ -1,0 +1,12 @@
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version [DEVELOP-FOR-23.0]
+gem5 compiled Jun  3 2023 18:45:46
+gem5 started Jul 26 2023 02:36:33
+gem5 executing on amarillo, pid 3750592
+command line: build/X86_MESI_Two_Level/gem5.opt -re --outdir=results_npb_agg/lpddr5_6400_8CPU/ft.C.x configs-mem-agg/run.py ft.C.x No 0 0 lpddr5_6400 8
+
+info: Standard input is not a terminal, disabling listeners.
+Global frequency set at 1000000000000 ticks per second
+      0: system.pc.south_bridge.cmos.rtc: Real-time clock set to Sun Jan  1 00:00:00 2012

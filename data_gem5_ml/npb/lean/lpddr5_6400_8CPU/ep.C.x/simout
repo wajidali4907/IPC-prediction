@@ -1,0 +1,10 @@
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version [DEVELOP-FOR-23.0]
+gem5 compiled Jun  3 2023 18:45:46
+gem5 started Jul 26 2023 21:27:15
+gem5 executing on amarillo, pid 4058356
+command line: build/X86_MESI_Two_Level/gem5.opt -re --outdir=results_npb_lean/lpddr5_6400_8CPU/ep.C.x configs-mem-lean/run.py ep.C.x No 0 0 lpddr5_6400 8
+
+info: Standard input is not a terminal, disabling listeners.

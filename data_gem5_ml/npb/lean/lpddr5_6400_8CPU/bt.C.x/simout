@@ -1,0 +1,28 @@
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version [DEVELOP-FOR-23.0]
+gem5 compiled Jun  3 2023 18:45:46
+gem5 started Jul 26 2023 21:27:15
+gem5 executing on amarillo, pid 4058353
+command line: build/X86_MESI_Two_Level/gem5.opt -re --outdir=results_npb_lean/lpddr5_6400_8CPU/bt.C.x configs-mem-lean/run.py bt.C.x No 0 0 lpddr5_6400 8
+
+info: Standard input is not a terminal, disabling listeners.
+Global frequency set at 1000000000000 ticks per second
+      0: system.pc.south_bridge.cmos.rtc: Real-time clock set to Sun Jan  1 00:00:00 2012
+Running the simulation ************************************** 
+
+Simulating 100 intervals of 10ms each! 
+
+Interval number: 0
+Interval number: 1
+Interval number: 2
+Interval number: 3
+Interval number: 4
+Interval number: 5
+Interval number: 6
+Interval number: 7
+Interval number: 8
+Exiting because simpoint starting point found
+End of simulation ******************************************** 
+

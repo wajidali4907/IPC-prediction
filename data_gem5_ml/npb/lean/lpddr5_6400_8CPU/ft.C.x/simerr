@@ -1,0 +1,12 @@
+warn: system.caches.network adopting orphan SimObject param 'int_links'
+build/X86_MESI_Two_Level/mem/dram_interface.cc:896: warn: DRAM device capacity (1024 Mbytes) does not match the address range assigned (4096 Mbytes)
+build/X86_MESI_Two_Level/mem/dram_interface.cc:896: warn: DRAM device capacity (8192 Mbytes) does not match the address range assigned (128 Mbytes)
+build/X86_MESI_Two_Level/mem/dram_interface.cc:896: warn: DRAM device capacity (1024 Mbytes) does not match the address range assigned (4096 Mbytes)
+build/X86_MESI_Two_Level/sim/kernel_workload.cc:46: info: kernel located at: /home/babaie/projects/ispass2023/runs/hbmCtrlrTest/dramCacheController/fullSystemDisksKernel/x86-linux-kernel-4.19.83
+build/X86_MESI_Two_Level/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+build/X86_MESI_Two_Level/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+build/X86_MESI_Two_Level/dev/serial/terminal.cc:174: warn: Sockets disabled, not accepting terminal connections
+build/X86_MESI_Two_Level/base/remote_gdb.cc:416: warn: Sockets disabled, not accepting gdb connections
+build/X86_MESI_Two_Level/dev/intel_8254_timer.cc:128: warn: Reading current count from inactive timer.
+build/X86_MESI_Two_Level/sim/serialize.cc:164: fatal: Can't load checkpoint file '/home/aakahlow/Dcache_Src/new-runs/dramCacheController/npb_checkpoints/ft.C.x/cpt//m5.cpt'
+Memory Usage: 17986796 KBytes

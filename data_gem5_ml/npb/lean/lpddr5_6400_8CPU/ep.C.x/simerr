@@ -1,0 +1,5 @@
+KeyError: 'ep.C.x'
+
+At:
+  configs-mem-lean/run.py(280): <module>
+  build/X86_MESI_Two_Level/python/m5/main.py(597): main
