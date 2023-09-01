@@ -3,7 +3,7 @@ import re
 import csv
 
 # Directory containing your text files
-directory = 'stats'
+directory = '/home/wajid/IPC prediction/stats'
 
 # Define the metric names you want to extract
 metric_names = [
