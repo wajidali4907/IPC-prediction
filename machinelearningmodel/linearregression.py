@@ -8,22 +8,19 @@ combined_data = pd.read_csv(file_path, delimiter=',', encoding='utf-8')
 
 # Define the input parameters (features) you want to use
 input_parameters =  [
-    'system.o3Cpu0.cpi',
-    'system.o3Cpu0.numLoadInsts',
-    'system.o3Cpu0.numInsts',
-    'system.o3Cpu0.numBranches',
-    'system.o3Cpu0.intAluAccesses',
-    'system.o3Cpu0.thread_0.numOps',
-
-
+    'numLoadInsts',
+    'numStoreInsts',
+    'numInsts',
+    'numBranches',
+    'intAluAccesses',
+    'numOps',
+    'model'
 ]
+
 # Define the target variable (y)
 target_variables = [
-    'system.o3Cpu0.ipc',
-
-    
+    'ipc'
 ]
-
 
 # Create dictionaries to store the trained models and predictions
 models = {}
