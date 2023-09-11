@@ -6,18 +6,22 @@ from sklearn.metrics import mean_squared_error
 import numpy as np
 
 # Load your combined CSV data directly
-file_path = '/home/wajid/IPC prediction/output.csv'
+file_path = '/home/wajid/IPC prediction/output1.csv'
 combined_data = pd.read_csv(file_path, delimiter=',', encoding='utf-8')
 
 # Define the input parameters (features) you want to use
-input_parameters = [
+input_parameters =  [
     'numLoadInsts',
     'numStoreInsts',
     'numInsts',
     'numBranches',
     'intAluAccesses',
     'numOps',
-    'model'
+    'model',
+    'L1Icache',
+    'L1Dcache',
+    'L2cache',
+    'pipelinewidth'
 ]
 
 # Define the target variable (y)
