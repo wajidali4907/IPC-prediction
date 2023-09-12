@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 
 # Load your combined CSV data directly
-file_path = '/home/wajid/IPC prediction/output1.csv'
+file_path = '/home/wajid/IPC prediction/output1.csv'  # Update the absolute file path
 combined_data = pd.read_csv(file_path, delimiter=',', encoding='utf-8')
 
 # Define the input parameters (features) you want to use
@@ -43,9 +43,8 @@ model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 
 # Create a scatter plot of actual vs. predicted values
-plt.figure(figsize=(8, 6))
-plt.scatter(y_test, y_pred, alpha=0.5)
-plt.xlabel('Actual IPC')
-plt.ylabel('Predicted IPC')
-plt.title('Actual vs. Predicted IPC')
-plt.show()
+
+
+# Save the actual and predicted IPC values to a CSV file
+result_df = pd.DataFrame({'Actual IPC': y_test, 'Predicted IPC': y_pred})
+result_df.to_csv('/home/wajid/IPC prediction/actual_vs_predicted_ipc.csv', index=False)  # Update the absolute file path
