@@ -10,8 +10,8 @@ import matplotlib.pyplot as plt
 
 # Load your combined CSV data directly
 file_path_rf = '/home/wajid/IPC prediction/output1.csv'
-file_path_lr = '/home/wajid/IPC prediction/output.csv'
-file_path_svm = '/home/wajid/IPC prediction/output.csv'
+file_path_lr = '/home/wajid/IPC prediction/output1.csv'
+file_path_svm = '/home/wajid/IPC prediction/output1.csv'
 
 combined_data_rf = pd.read_csv(file_path_rf, delimiter=',', encoding='utf-8')
 combined_data_lr = pd.read_csv(file_path_lr, delimiter=',', encoding='utf-8')

@@ -63,23 +63,19 @@ metric_names = [
     'system.o3Cpu5.ipc',
     'system.o3Cpu6.ipc',
     'system.o3Cpu7.ipc',
+    'system.caches.controllers0.L1Dcache.m_demand_hits',
     'system.caches.controllers1.L1Dcache.m_demand_hits',
-    'system.caches.controllers1.L1Icache.m_demand_hits',
     'system.caches.controllers2.L1Dcache.m_demand_hits',
-    'system.caches.controllers2.L1Icache.m_demand_hits'
-    
+    'system.caches.controllers3.L1Dcache.m_demand_hits',
+    'system.caches.controllers4.L1Dcache.m_demand_hits',
+    'system.caches.controllers5.L1Dcache.m_demand_hits',
+    'system.caches.controllers6.L1Dcache.m_demand_hits',
+    'system.caches.controllers7.L1Dcache.m_demand_hits'
 ]
 
-
-# Initialize a dictionary to store the extracted data
+# Initialize dictionaries to store the extracted data
 aggregated_data = {metric.split('.')[-1]: [] for metric in metric_names}
-model_numbers = []
-L1Icache_values = []
-L1Dcache_values = []
-L2cache_values = []
-pipelinewidth_values = []
-
-# ...
+model_cache_mapping = {}  # To map cache controller metrics to CPU metrics
 
 # Loop through the text files in the directory
 for filename in os.listdir(directory):
@@ -111,64 +107,47 @@ for filename in os.listdir(directory):
         # Read the text file
         with open(file_path, 'r') as file:
             lines = file.readlines()
-            
-        
 
-        # Parse the data and extract the desired metrics for each CPU core
+        # Parse the data and extract the desired metrics
+        metric_values = {metric: [] for metric in metric_names}
+
+        # Extract metrics for CPU cores and cache controllers
+        for line in lines:
+            for metric_name in metric_names:
+                # Check if the metric corresponds to a CPU core or cache controller
+                if metric_name in line:
+                    match = re.search(r'([\d.]+)\s*#', line)
+                    if match:
+                        value = float(match.group(1))
+                        metric_values[metric_name].append(value)
+
+        # Append the aggregated metric values
         for metric_name in metric_names:
-            metric_values = []
+            aggregated_data[metric_name.split('.')[-1]].extend(metric_values[metric_name])
 
-            for core_id in range(8):
-                for line in lines:
-                    if f'system.o3Cpu{core_id}.' in line and metric_name in line:
-                        match = re.search(r'([\d.]+)\s*#', line)
-                        if match:
-                            value = float(match.group(1))
-                            metric_values.append(value)
+# Define the output CSV file name
+output_csv = 'output.csv'
 
-            # Append the aggregated metric values to the corresponding column
-            aggregated_data[metric_name.split('.')[-1]].extend(metric_values)
-            model_numbers.extend([model_number] * len(metric_values))  # Ensure model numbers match data
+# Write the extracted data to a CSV file
+with open(output_csv, 'w', newline='') as csvfile:
+    writer = csv.writer(csvfile)
+    # Write the header row
+    header_row = ['model'] + list(aggregated_data.keys()) + ['L1Icache', 'L1Dcache', 'L2cache', 'pipelinewidth']
+    writer.writerow(header_row)
 
-            # Append cache and pipelinewidth values
-            L1Icache_values.extend([L1I_cache] * len(metric_values))
-            L1Dcache_values.extend([L1D_cache] * len(metric_values))
-            L2cache_values.extend([L2_cache] * len(metric_values))
-            pipelinewidth_values.extend([pipeline_width] * len(metric_values))
-            # Inside the loop where you read lines from the file
+    # Calculate the number of samples
+    num_samples = len(aggregated_data[list(aggregated_data.keys())[0]])
+    print(f"Number of samples: {num_samples}")
 
+    for i in range(num_samples):
+        row = [
+            model_number,
+            *[aggregated_data[metric][i] if aggregated_data[metric] else None for metric in aggregated_data.keys()],
+            L1I_cache,
+            L1D_cache,
+            L2_cache,
+            pipeline_width
+        ]
+        writer.writerow(row)
 
-# Check if any metrics were extracted
-if not aggregated_data:
-    print("No metrics data found in the text files. Check your input files and code.")
-else:
-    # Define the output CSV file name
-    output_csv = 'output1.csv'
-
-    # Write the extracted data, model numbers, and new columns to a CSV file
-    with open(output_csv, 'w', newline='') as csvfile:
-        writer = csv.writer(csvfile)
-        # Write the header row with additional columns
-        header_row = ['model'] + list(aggregated_data.keys()) + ['L1Icache', 'L1Dcache', 'L2cache', 'pipelinewidth']
-        writer.writerow(header_row)
-
-        # Calculate the number of samples
-        num_samples = len(aggregated_data[list(aggregated_data.keys())[0]])
-        print(f"Number of samples: {num_samples}")
-
-        # Print the lengths of aggregated_data lists
-        for metric_name, metric_values in aggregated_data.items():
-            print(f"Length of {metric_name}: {len(metric_values)}")
-
-        for i in range(num_samples):
-            row = [
-                model_numbers[i],
-                *[aggregated_data[metric][i] if aggregated_data[metric] else None for metric in aggregated_data.keys()],
-                L1Icache_values[i],
-                L1Dcache_values[i],
-                L2cache_values[i],
-                pipelinewidth_values[i]
-            ]
-            writer.writerow(row)
-
-    print(f'Extracted data from text files and saved to {output_csv}')
+print(f'Extracted data from text files and saved to {output_csv}')
